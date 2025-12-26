@@ -96,6 +96,7 @@ battery_voltage = get_battery_voltage()
 if (battery_voltage < 3.1 or wake):
     if ( connect_to_wifi() ):
         sendEmail(battery_voltage,wake)
+        time.sleep(5) # allow for manual testing
         if (d0.value() == 0): 
             sleep.time(24*60*60) # if leak still detected, wait for 1 day before checking again (so that constant emails are not sent)
         machine.reset() # disconnect from wifi and get ready for deepsleep again
